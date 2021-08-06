@@ -29,6 +29,29 @@ module.exports.newUser=function(req,res){
             return res.redirect('back');
         }
         console.log(prob);
-        return res.end("<h1>User Created Successfully</h1>");
+        return res.render('home',{
+            title: "User Created"
+        });
+    });
+}
+module.exports.signin=function(req,res){
+    return res.render('signIn',{
+        title: "Sign In"
+    });
+}
+module.exports.signedin=function(req,res){
+    if(req.body.username==null || req.body.password==null)
+        return res.redirect('back');
+    DBcon.find({
+        username: req.body.username
+    },
+    function(err,doc){
+        if(err){
+            console.log('User Not Found or Password not matched');
+        }
+        console.log(doc);
+        return res.render('home',{
+            title: doc.name
+        });
     });
 }
