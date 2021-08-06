@@ -7,6 +7,7 @@ const db= require('./config/mongoose');
 
 
 app.use(express.urlencoded());
+app.use(cookieParser());
 app.use(express.static('./assets'));
 app.use(expressLayouts);
 //extract layouts and scripts
