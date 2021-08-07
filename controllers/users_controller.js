@@ -9,9 +9,14 @@ module.exports.posts=function(req,res){
 }
 
 module.exports.signup=function(req,res){
-    return res.render('signUp',{
-        title: "Sign Up"
-    });
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+    else{
+        return res.render('signUp',{
+            title: "Sign Up"
+        });
+    }
 }
 module.exports.newUser=function(req,res){
     if(req.body.username==null || req.body.password==null || req.body.name==null){
@@ -46,11 +51,17 @@ module.exports.newUser=function(req,res){
     
 }
 module.exports.signin=function(req,res){
-    return res.render('signIn',{
-        title: "Sign In"
-    });
+    // console.log(req.cookies);
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+    else{
+        return res.render('signIn',{
+            title: "Sign In"
+        });
+    }
 }
-module.exports.signedin=function(req,res){
+module.exports.createSession=function(req,res){
    /* if(req.body.username==null || req.body.password==null)
         return res.redirect('back');
     DBcon.find({
