@@ -51,7 +51,7 @@ module.exports.signin=function(req,res){
     });
 }
 module.exports.signedin=function(req,res){
-    if(req.body.username==null || req.body.password==null)
+   /* if(req.body.username==null || req.body.password==null)
         return res.redirect('back');
     DBcon.find({
         username: req.body.username
@@ -64,5 +64,6 @@ module.exports.signedin=function(req,res){
         return res.render('home',{
             title: doc.name
         });
-    });
+    });*/
+    return res.redirect('/users/profile');
 }

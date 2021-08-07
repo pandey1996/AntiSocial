@@ -6,7 +6,7 @@ const User=require('../models/user');
 
 // Authentication using passport
 passport.use(new LocalStrategy({
-        usernameField: 'email',
+        usernameField: 'username',
     },
     function(email,password,done){
         // find a user
@@ -32,8 +32,8 @@ passport.serializeUser(function(user,done){
 });
 
 // De-Serializing the user to store data into cookies
-passport.deserializeUser(function(user, done){
-    User.fincById(id, function(err, user){
+passport.deserializeUser(function(id, done){
+    User.findById(id, function(err, user){
         if(err){ 
             console.log('Error in finding the user');
             return done(err);
