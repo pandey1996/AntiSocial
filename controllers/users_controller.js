@@ -2,7 +2,9 @@ const db=require('../config/mongoose');
 const DBcon=require('../models/user');
 
 module.exports.profile=function(req,res){
-    return res.end('<h1> User Profile </h1>');
+    return res.render('users',{
+        title: "Profile"
+    });
 }
 module.exports.posts=function(req,res){
     return res.end('<h1>Ghantaa ka History</h1>');
@@ -62,19 +64,10 @@ module.exports.signin=function(req,res){
     }
 }
 module.exports.createSession=function(req,res){
-   /* if(req.body.username==null || req.body.password==null)
-        return res.redirect('back');
-    DBcon.find({
-        username: req.body.username
-    },
-    function(err,doc){
-        if(err){
-            console.log('User Not Found or Password not matched');
-        }
-        console.log(doc);
-        return res.render('home',{
-            title: doc.name
-        });
-    });*/
     return res.redirect('/users/profile');
+}
+
+module.exports.deleteSession=function(req,res){
+    req.logout();
+    res.redirect('/');
 }

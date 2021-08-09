@@ -1,2 +1,23 @@
 <link rel="stylesheet" href="./css/home.css">
 <h1>Anitsocial</h1>
+
+<section id="feeds">
+    <h4> Posts </h4>
+    <form action="/posts/create" id="new_post_form" method="POST">
+        <textarea name="content" cols="30" rows="4" placeholder="Type Here....."></textarea>
+        <input type="submit" value="Post">
+    </form>
+    <div id="posts_container">
+        <ul>
+            <% for(p of posts){%>
+                <li>
+                    <%= p.content %>
+                    <small>
+                        <%= p.user.name %>
+                    </small>
+                </li>
+
+            <%}%>
+        </ul>
+    </div>
+</section>
