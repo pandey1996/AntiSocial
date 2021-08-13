@@ -11,7 +11,7 @@
         <ul>
             <% for(p of posts){%>
                 <li>
-                    <%= p.content %>
+                    <p><%= p.content %></p><br>
                     <small>
                         <%= p.user.name %>
                     </small>
@@ -23,6 +23,14 @@
                                 <input type="submit" value="comment">    
                             </form>
                         <%}%>
+                        <div class="comment_list">
+                            <ul id="post-comments-<%= p._id %>">
+                                <% for(c of p.comments){%>
+                                    <p> <%=c.content%> </p><br>
+                                    <small><%=c.user.name%></small>
+                                <%}%>
+                            </ul>
+                        </div>
                     </div>
                 </li>
 
