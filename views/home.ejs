@@ -15,6 +15,11 @@
                     <small>
                         <%= p.user.name %>
                     </small>
+                    <% if((locals.user) && (locals.user.id==p.user.id)){%>
+                        <small>
+                            <a href="/posts/destroy/<%=p.id%>">delete</a>
+                        </small>
+                    <%} %>
                     <div class="comment_class">
                         <% if(locals.user){ %>
                             <form action="/comments/create" id="addComment" method="POST">
