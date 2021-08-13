@@ -4,6 +4,6 @@ const router=express.Router();
 
 const posts_controller=require('../controllers/posts_controller');
 
-router.post('/create',posts_controller.createPosts);
+router.post('/create',passport.checkAuthentication,posts_controller.createPosts);
 
 module.exports=router;
