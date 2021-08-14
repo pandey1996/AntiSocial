@@ -79,10 +79,12 @@ module.exports.signin=function(req,res){
     }
 }
 module.exports.createSession=function(req,res){
+    req.flash('success','Logged In successfully');
     return res.redirect('/');
 }
 
 module.exports.deleteSession=function(req,res){
     req.logout();
+    req.flash('success','Logged Out successfully');
     res.redirect('/');
 }
