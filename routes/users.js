@@ -5,6 +5,7 @@ const router=express.Router();
 const users_controller=require('../controllers/users_controller');
 
 router.get('/profile/:id',passport.checkAuthentication,users_controller.profile);
+router.post('/update/:id',passport.checkAuthentication,users_controller.update);
 router.get('/posts',users_controller.posts);
 router.get('/signup',users_controller.signup);
 router.post('/newUser',users_controller.newUser);

@@ -9,6 +9,17 @@ module.exports.profile=function(req,res){
         });
     });
 }
+
+module.exports.update=function(req,res){
+    if(req.user.id==req.params.id){
+        DBcon.findByIdAndUpdate(req.user.id,req.body,function(err,user){
+            return res.redirect('back');
+        });
+    }
+    else{
+        return res.status(401).send('Unauthorized');
+    }
+}
 module.exports.posts=function(req,res){
     return res.end('<h1>Ghantaa ka History</h1>');
 }
