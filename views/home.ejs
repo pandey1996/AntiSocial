@@ -10,40 +10,7 @@
     <div id="posts_container">
         <ul>
             <% for(p of posts){%>
-                <li>
-                    <p><%= p.content %></p><br>
-                    <small>
-                        <%= p.user.name %>
-                    </small>
-                    <% if((locals.user) && (locals.user.id==p.user.id)){%>
-                        <small>
-                            <a href="/posts/destroy/<%=p.id%>">delete</a>
-                        </small>
-                    <%} %>
-                    <div class="comment_class">
-                        <% if(locals.user){ %>
-                            <form action="/comments/create" id="addComment" method="POST">
-                                <textarea name="newComment" cols="30" rows="2" placeholder="Comment Here....."></textarea>  
-                                <input type="hidden" name="post_id" value="<%=p._id%>">
-                                <input type="submit" value="comment">    
-                            </form>
-                        <%}%>
-                        <div class="comment_list">
-                            <ul id="post-comments-<%= p._id %>">
-                                <% for(c of p.comments){%>
-                                    <p> <%=c.content%> </p><br>
-                                    <small><%=c.user.name%></small>
-                                    <% if((locals.user) && (locals.user.id==c.user.id)){%>
-                                        <small>
-                                            <a href="/comments/destroy/<%=c.id%>">delete</a>
-                                        </small>
-                                    <%} %>
-                                <%}%>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-
+                <%- include('_post') %>
             <%}%>
         </ul>
     </div>

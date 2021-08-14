@@ -64,7 +64,7 @@ module.exports.signin=function(req,res){
     }
 }
 module.exports.createSession=function(req,res){
-    return res.redirect('/users/profile');
+    return res.redirect('/');
 }
 
 module.exports.deleteSession=function(req,res){
