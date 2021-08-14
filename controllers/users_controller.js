@@ -2,8 +2,11 @@ const db=require('../config/mongoose');
 const DBcon=require('../models/user');
 
 module.exports.profile=function(req,res){
-    return res.render('users',{
-        title: "Profile"
+    DBcon.findById(req.params.id,function(err,user){
+        return res.render('users',{
+            title: "Profile",
+            profile_user: user
+        });
     });
 }
 module.exports.posts=function(req,res){
