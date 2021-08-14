@@ -69,7 +69,8 @@ module.exports.newUser=function(req,res){
 module.exports.signin=function(req,res){
     // console.log(req.cookies);
     if(req.isAuthenticated()){
-        return res.redirect('/users/profile');
+        var path='/users/profile/'+req.user.id;
+        return res.redirect(path);
     }
     else{
         return res.render('signIn',{
