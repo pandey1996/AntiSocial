@@ -27,3 +27,19 @@ module.exports.addComments=function(req,res){
     });
     
 }
+
+
+module.exports.destroyComments=function(req,res){
+    comments_db.findById(req.params.id,function(err,comment){
+        if(err){ console.log("Error in connecting to DB during comments",err); return res.redirect('back');}
+        if(comment.user==req.user.id){
+            post_db.findById(comment.post,function(err,post){
+                if(err){ console.log("Error in connecting to DB during comments",err); return res.redirect('back');}
+                post.comments.pull(comment);
+                post.save();
+            });
+            comment.remove();
+        }
+    });
+    return res.redirect('/');
+}
