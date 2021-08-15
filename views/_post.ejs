@@ -1,4 +1,4 @@
-<li>
+<li id="post-<%=p._id%>">
     <p>
         <%= p.content %>
         <small>
@@ -6,7 +6,7 @@
         </small>
         <% if((locals.user) && (locals.user.id==p.user.id)){%>
             <small>
-                <a href="/posts/destroy/<%=p.id%>">delete</a>
+                <a class="delete_post" href="/posts/destroy/<%=p.id%>">delete</a>
             </small>
         <%} %>
     </p>

@@ -45,10 +45,11 @@ passport.deserializeUser(function(id, done){
 
 //check Authentication
 passport.checkAuthentication=function(req,res,next){
-    if(req.isAuthenticated()){
+    if(req.isAuthenticated()){ 
         return next();
     }
     else{
+        req.flash('error','Please Sign in to Access');
         return res.redirect('/users/signin');
     }
 
